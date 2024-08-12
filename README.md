@@ -36,12 +36,19 @@
 
 1. Clone the repository:
    ```bash
-### Client  
-   git clone https://github.com/bernard493/HappyPaws
 
-### Server
-   git clone https://github.com/bernard493/HappyPaws-server
+### Client
+
+git clone https://github.com/bernard493/HappyPaws
+
    ```
+
+
+```bash
+### Server
+git clone https://github.com/bernard493/HappyPaws-server
+````
+
 2. Navigate to the project directory:
    ```bash
    cd pawfectmatch
