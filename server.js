@@ -24,8 +24,14 @@ const adopterProfileRoutes = require("./routes/Adopter/adopterProfile");
 const petRoutes = require("./routes/Pets/pets");
 
 //Shelter Routes
+const shelterRoutes = require("./routes/Shelter/shelter");
+const ShelterSpecificRoutes = require("./routes/Shelter-Specific/shelter_specific");
+const ShelterAdoptionRoutes = require("./routes/Shelter-Specific/adoptions");
+const ShelterProfileRoutes = require("./routes/Shelter-Specific/profile");
 
 // Admin Routes
+const adminUserRoutes = require("./routes/Admin/user_management");
+const adminShelterRoutes = require("./routes/Admin/shelter");
 
 app.listen(PORT, (req, res) => {
   console.log(`server running ${PORT}`);
@@ -43,3 +49,13 @@ app.use("/api/v1/adoptions", adopterProfileRoutes);
 
 // Pets END-POINTS
 app.use("/api/v1/pets", petRoutes);
+
+// Shelter END POINT
+app.use("/api/v1/shelter", shelterRoutes);
+app.use("/api/v1/shelter-specific", ShelterSpecificRoutes);
+app.use("/api/v1/shelter-specific", ShelterAdoptionRoutes);
+app.use("/api/v1/shelter-specific/me", ShelterProfileRoutes);
+
+// ADMIN ENDPOINT
+app.use("/api/v1/admin", adminUserRoutes);
+app.use("/api/v1/admin", adminShelterRoutes);
