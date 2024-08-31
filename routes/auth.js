@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Joi = require("joi");
 const bcrypt = require("bcrypt");
-
+const dbConnection = require("../config/dbConnection");
 // register all user and set role {Adopter, ShelterStaff, Admin}
 router.post("/register", (req, res) => {
   const { username, email, password, role } = req.body;
@@ -19,8 +19,9 @@ router.post("/register", (req, res) => {
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
   } else {
-    // const hashedPassword = bcrypt.hashSync(password, 10);
-    res.json({ ...req.body, password: hashedPassword });
+    // const userAlreadyExist = dbConnection.query("")
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    res.json({ username, email, role, password: hashedPassword });
   }
 });
 

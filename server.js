@@ -45,7 +45,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/avatar", avatarRoutes);
 
 // Adopter END-POINTS
-app.use("/api/v1/adoptions", adopterProfileRoutes);
+app.use("/api/v1/adopter", adopterProfileRoutes);
 
 // Pets END-POINTS
 app.use("/api/v1/pets", petRoutes);
