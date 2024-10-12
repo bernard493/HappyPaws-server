@@ -1,35 +1,16 @@
 const router = require("express").Router();
-const Joi = require("joi");
-const bcrypt = require("bcrypt");
-const dbConnection = require("../config/dbConnection");
+const {
+  loginController,
+  signUpController,
+} = require("../controllers/Auth/auth");
+
+
+
+
 // register all user and set role {Adopter, ShelterStaff, Admin}
-router.post("/register", (req, res) => {
-  const { username, email, password, role } = req.body;
-  const userRegistrationSchema = Joi.object({
-    username: Joi.string().required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().required(),
-    role: Joi.string().valid("adopter", "shelter_staff", "admin").required(),
-  });
+router.post("/register", signUpController);
 
-  const { error } = userRegistrationSchema.validate(req.body, {
-    abortEarly: false,
-  });
-
-  if (error) {
-    return res.status(400).json({ message: error.details[0].message });
-  } else {
-    // const userAlreadyExist = dbConnection.query("")
-    const hashedPassword = bcrypt.hashSync(password, 10);
-    res.json({ username, email, role, password: hashedPassword });
-  }
-});
-
-router.post("/login", (req, res) => {
-  // const {username , email , password} = req.body;
-  // const hashedPassword = bcrypt.hashSync(password, 10);
-  res.send("auth login working ");
-});
+router.post("/login", loginController);
 
 router.post("/logout", (req, res) => {
   // const {username , email , password} = req.body;
