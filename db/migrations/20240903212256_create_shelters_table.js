@@ -9,6 +9,8 @@ exports.up = function (knex) {
     table.string("address").notNullable();
     table.string("phone_number").notNullable();
     table.string("email").notNullable();
+    table.string("avatar").notNullable()
+    table.boolean("status").notNullable()
     table.timestamps(true, true);
   });
 };

@@ -14,16 +14,7 @@ exports.seed = async function (knex) {
       email: faker.internet.exampleEmail(),
       password: faker.internet.password(),
       role: "adopter",
-      created_at: knex.fn.now(),
-      updated_at: knex.fn.now(),
-    },
-    {
-      id: knex.raw("UUID()"),
-      username: faker.person.fullName(),
-      email: faker.internet.exampleEmail(),
-      password:  faker.internet.password(),
-      role: "shelter",
-      
+      avatar: faker.image.avatar(),
     },
     {
       id: knex.raw("UUID()"),
@@ -31,7 +22,7 @@ exports.seed = async function (knex) {
       email: faker.internet.exampleEmail(),
       password: faker.internet.password(),
       role: "shelter",
-    
+      avatar: faker.image.avatar(),
     },
     {
       id: knex.raw("UUID()"),
@@ -39,7 +30,7 @@ exports.seed = async function (knex) {
       email: faker.internet.exampleEmail(),
       password: faker.internet.password(),
       role: "shelter",
-      
+      avatar: faker.image.avatar(),
     },
     {
       id: knex.raw("UUID()"),
@@ -47,15 +38,7 @@ exports.seed = async function (knex) {
       email: faker.internet.exampleEmail(),
       password: faker.internet.password(),
       role: "shelter",
-     
-    },
-    {
-      id: knex.raw("UUID()"),
-      username: faker.person.fullName(),
-      email:faker.internet.exampleEmail(),
-      password:faker.internet.password(),
-      role: "shelter",
-      
+      avatar: faker.image.avatar(),
     },
     {
       id: knex.raw("UUID()"),
@@ -63,15 +46,31 @@ exports.seed = async function (knex) {
       email: faker.internet.exampleEmail(),
       password: faker.internet.password(),
       role: "shelter",
-      
+      avatar: faker.image.avatar(),
     },
     {
       id: knex.raw("UUID()"),
       username: faker.person.fullName(),
       email: faker.internet.exampleEmail(),
-      password:faker.internet.password(),
+      password: faker.internet.password(),
+      role: "shelter",
+      avatar: faker.image.avatar(),
+    },
+    {
+      id: knex.raw("UUID()"),
+      username: faker.person.fullName(),
+      email: faker.internet.exampleEmail(),
+      password: faker.internet.password(),
+      role: "shelter",
+      avatar: faker.image.avatar(),
+    },
+    {
+      id: knex.raw("UUID()"),
+      username: faker.person.fullName(),
+      email: faker.internet.exampleEmail(),
+      password: faker.internet.password(),
       role: "admin",
-     
+      avatar: faker.image.avatar(),
     },
   ]);
 };

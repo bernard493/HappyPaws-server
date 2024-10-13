@@ -61,6 +61,7 @@ const signUpController = async (req, res) => {
       email,
       password: hashedPassword,
       role,
+      avatar: "https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png?ssl=1",
     });
 
     if (user) {
