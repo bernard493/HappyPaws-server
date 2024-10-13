@@ -4,9 +4,6 @@ const {
   signUpController,
 } = require("../controllers/Auth/auth");
 
-
-
-
 // register all user and set role {Adopter, ShelterStaff, Admin}
 router.post("/register", signUpController);
 
@@ -16,18 +13,6 @@ router.post("/logout", (req, res) => {
   // const {username , email , password} = req.body;
   // const hashedPassword = bcrypt.hashSync(password, 10);
   res.send("auth logout working ");
-});
-
-router.get("/profile", (req, res) => {
-  // const {username , email , password} = req.body;
-  // const hashedPassword = bcrypt.hashSync(password, 10);
-
-  res.send("get user  profile");
-});
-
-router.put("/profile", (req, res) => {
-  // const {username , email , password}
-  res.send("update user profile");
 });
 
 router.put("/forget-password", (req, res) => {

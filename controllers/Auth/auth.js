@@ -1,4 +1,5 @@
 const Joi = require("joi");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const knex = require("knex")(require("../../knexfile"));
 const constants = require("../../const/constants");
@@ -6,7 +7,7 @@ require("dotenv").config();
 
 const signUpController = async (req, res) => {
   try {
-    const { username, email, password, role } = req.body;
+    const { username, email, password, role = "adopter" } = req.body;
 
     // Joi validation schema
     const userRegistrationSchema = Joi.object({
@@ -39,7 +40,6 @@ const signUpController = async (req, res) => {
       // Return all validation errors
       return res.status(400).json({
         message: error.details.map((err) => err.message),
-     
       });
     }
 
@@ -75,10 +75,30 @@ const signUpController = async (req, res) => {
   }
 };
 
-const loginController = (req, res) => {
-  // const {username , email , password} = req.body;
+const loginController = async (req, res) => {
+  const { email, password } = req.body;
   // const hashedPassword = bcrypt.hashSync(password, 10);
-  res.send("auth login working ");
+  try {
+    const user = await knex(constants.knex.users).where("email", email).first(); // Retrieve the first user if it exists
+
+    if (!user || !bcrypt.compareSync(password, user.password)) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Generate the token after successful authentication
+    // eslint-disable-next-line no-undef
+    const token = jwt.sign({ id: user.id }, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: "3h",
+    });
+
+    return res.status(200).json({
+      message: "Login successful",
+      token: `Bearer ${token}`,
+    });
+    // eslint-disable-next-line no-undef
+  } catch (err) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 module.exports = {
