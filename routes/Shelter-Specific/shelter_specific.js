@@ -1,9 +1,9 @@
 const router = require("express").Router();
+const passport = require("../../middleware/passport");
 
 
 
-
-router.post("/pets", (req, res) => {
+router.post("/pets", passport.authenticate("jwt", { session: false }), (req, res) => {
   res.send(" Add a new pet to the shelter's listings.");
 });
 

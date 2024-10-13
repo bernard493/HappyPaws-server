@@ -3,9 +3,16 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
+const passport = require('./middleware/passport');
+
 require("dotenv").config();
 
+// eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 5000;
+
+
+// Initialize passport
+app.use(passport.initialize());
 
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,7 +40,15 @@ const ShelterProfileRoutes = require("./routes/Shelter-Specific/profile");
 const adminUserRoutes = require("./routes/Admin/user_management");
 const adminShelterRoutes = require("./routes/Admin/shelter");
 
-app.listen(PORT, (req, res) => {
+// Generate Recommendation by user input
+const searchPetsRoutes = require("./routes/Search/search");
+
+
+// User Profile
+const userProfileRoutes = require("./routes/Profile/ProfileRoute")
+
+
+app.listen(PORT, () => {
   console.log(`server running ${PORT}`);
 });
 
@@ -59,3 +74,12 @@ app.use("/api/v1/shelter-specific/me", ShelterProfileRoutes);
 // ADMIN ENDPOINT
 app.use("/api/v1/admin", adminUserRoutes);
 app.use("/api/v1/admin", adminShelterRoutes);
+
+
+// Search ENDPOINT
+app.get("/api/v1/search", searchPetsRoutes)
+
+
+// User profile ENDPOINT
+app.use("/api/v1/profile", userProfileRoutes)
+

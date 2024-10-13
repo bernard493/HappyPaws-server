@@ -8,7 +8,7 @@ exports.up = function (knex) {
     table.string("username").notNullable().unique();
     table.string("email").notNullable().unique();
     table.string("password").notNullable().unique();
-    table.enu("role", ["adopter", "shelter", "admin"]).notNullable();
+    table.enu("role", ["adopter", "admin"]).notNullable();
     table.timestamps(true, true);
   });
 };
