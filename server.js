@@ -11,6 +11,13 @@ require("dotenv").config();
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 5000;
 
+// CORS configuration
+const corsOptions = {
+  origin: 'http://localhost:3000', // Specify your client origin here
+  credentials: true, // Enable credentials (cookies, authorization headers, etc.)
+};
+
+app.use(cors(corsOptions));
 
 // Initialize passport
 app.use(passport.initialize());
@@ -19,7 +26,6 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(cors());
 
 
 // For All Routes

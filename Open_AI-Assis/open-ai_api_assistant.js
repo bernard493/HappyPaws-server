@@ -13,8 +13,8 @@ async function generateDogBreedsByOpenAi(searchValue, availableBreeds) {
       role: "user",
       content: `Please provide an array of 3 or minimum of 1 dog breed based on the user's preferences: "${searchValue}" and these available breeds: ${JSON.stringify(
         availableBreeds
-      )}. The output should be a proper JSON array with breed names like this: ["Breed1", "Breed2", "Breed3"] and nothing else.`,
-    },
+      )}. The output should be a strictly proper JSON array with breed names like this: ["Breed1", "Breed2", "Breed3"] and nothing else.`,
+    }
   ];
 
   try {

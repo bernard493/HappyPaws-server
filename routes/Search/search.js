@@ -7,7 +7,7 @@ const passport = require("../../middleware/passport");
 
 router.post(
   "/",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   getRecommendedPets
 );
 

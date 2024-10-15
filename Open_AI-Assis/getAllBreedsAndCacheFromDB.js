@@ -6,11 +6,11 @@ let cacheExpiry;
 
 const CACHE_TTL = 3600000; // Time-to-live for the cache in milliseconds (1 hour)
 
-async function getAllBreedsFromDB() {
+async function getAllBreedsAndCacheFromDB() {
   const currentTime = Date.now();
 
+  // Returning cached breeds
   if (breedCache.length > 0 && cacheExpiry > currentTime) {
-    console.log(`Returning cached breeds`);
     return breedCache;
   }
 
@@ -29,4 +29,4 @@ async function getAllBreedsFromDB() {
   }
 }
 
-module.exports = getAllBreedsFromDB;
+module.exports = getAllBreedsAndCacheFromDB;

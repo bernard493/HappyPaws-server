@@ -1,6 +1,6 @@
 const Joi = require("joi");
 const generateDogBreedsByOpenAi = require("../../Open_AI-Assis/open-ai_api_assistant");
-const getAllBreedsFromDB = require("../../Open_AI-Assis/getAllBreedsFromDB");
+const getAllBreedsAndCacheFromDB = require("../../Open_AI-Assis/getAllBreedsAndCacheFromDB");
 const constants = require("../../const/constants");
 const knex = require("knex")(require("../../knexfile"));
 
@@ -19,30 +19,47 @@ const getRecommendedPets = async (req, res) => {
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
     } else {
-      // get all themes from DB
-      const availableBreedsCache = await getAllBreedsFromDB();
+      // Get all breeds from DB and cache them
+      const availableBreedsCache = await getAllBreedsAndCacheFromDB();
 
-      // GET RECOMMENDATION FROM OPENAI
-      const suggestedBreeds = await generateDogBreedsByOpenAi(
-        searchValue,
-        availableBreedsCache
-      );
-      console.log("suggestedBreeds", suggestedBreeds);
-      //   MAKE DB CALL TO GET ALL DOGS OF THIS BREED
-      const getPetsWithRecommendedBreeds = knex
-        .select("*")
-        .from(constants.knex.pets)
-        // suggestedBreeds is going be an array or 2 or more values
-        .whereIn("breed", suggestedBreeds);
-      // RES WITH REDIRECT TO GET PRODUCTS
-      return res.status(200).json({
-        message: "Recommended Pets Retrieved Successfully",
-        suggested_Breeds: getPetsWithRecommendedBreeds,
-      });
+      if (availableBreedsCache && availableBreedsCache.length > 0) {
+        try {
+          // Get breed recommendations from OpenAI based on searchValue and cached breeds
+          const suggestedBreeds = await generateDogBreedsByOpenAi(
+            searchValue,
+            availableBreedsCache
+          );
+
+          const getPetsWithRecommendedBreeds = await knex
+            .select("*")
+            .from(constants.knex.pets)
+            .whereIn("breed", suggestedBreeds);
+
+          return res.status(200).json({
+            message: "Recommended Pets Retrieved Successfully",
+            results: getPetsWithRecommendedBreeds,
+          });
+        } catch (error) {
+          // Handle any errors that occur during the process
+          console.error("Error fetching recommended pets:", error);
+          return res.status(500).json({
+            message: "Error fetching recommended pets",
+            error: error.message,
+          });
+        }
+      } else {
+        // If no breeds are available from the cache, return an error
+        return res.status(500).json({
+          message: "No available breeds to generate recommendations",
+        });
+      }
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    console.error("Error fetching recommended pets:", error);
+    return res.status(500).json({
+      message: "Error fetching recommended pets",
+      error: error.message,
+    });
   }
 };
 
