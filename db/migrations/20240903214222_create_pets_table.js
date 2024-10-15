@@ -8,8 +8,14 @@ exports.up = function (knex) {
     table.string("name").notNullable();
     table.enu("species", ["dog", "cat", "bird", "other"]).notNullable();
     table.integer("age").notNullable();
+    table.integer("price").notNullable();
     table.string("breed").notNullable();
-    table.string("health_status").notNullable();
+    table.string("gender").notNullable();
+    table.string("color").notNullable();
+    table.jsonb("images").notNullable();
+    table.enu("size", ["small", "medium", "large"]).notNullable();
+    table.boolean("vaccineStatus").notNullable();
+    table.string("description").notNullable();
     table.boolean("available").defaultTo(true).notNullable();
     table
       .uuid("shelter_id")

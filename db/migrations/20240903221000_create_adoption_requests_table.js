@@ -7,7 +7,9 @@ exports.up = function (knex) {
     table.uuid("id").defaultTo(knex.fn.uuid()).primary();
     table.uuid("user_id").notNullable().references("id").inTable("users");
     table.uuid("pet_id").notNullable().references("id").inTable("pets");
-    table.enu("status", ["pending", "approved", "rejected"]).notNullable();
+    table.enu("orderStatus", ["Pending", "Approved", "Canceled","Completed"]).notNullable();
+    table.integer("price").notNullable()
+    table.integer("offerPrice").notNullable()
     table.timestamps(true, true);
   });
 };

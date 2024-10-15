@@ -5,11 +5,19 @@ const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const passport = require('./middleware/passport');
 
+
 require("dotenv").config();
 
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 5000;
 
+// CORS configuration
+const corsOptions = {
+  origin: 'http://localhost:3000', // Specify your client origin here
+  credentials: true, // Enable credentials (cookies, authorization headers, etc.)
+};
+
+app.use(cors(corsOptions));
 
 // Initialize passport
 app.use(passport.initialize());
@@ -18,7 +26,7 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(cors());
+
 
 // For All Routes
 const authRoutes = require("./routes/auth");
@@ -41,7 +49,7 @@ const adminUserRoutes = require("./routes/Admin/user_management");
 const adminShelterRoutes = require("./routes/Admin/shelter");
 
 // Generate Recommendation by user input
-const searchPetsRoutes = require("./routes/Search/search");
+const generateRecommendationDogBreedsFromUserInputRoutes = require("./routes/Search/search");
 
 
 // User Profile
@@ -77,7 +85,7 @@ app.use("/api/v1/admin", adminShelterRoutes);
 
 
 // Search ENDPOINT
-app.get("/api/v1/search", searchPetsRoutes)
+app.use("/api/v1/generate-recommendation-breeds", generateRecommendationDogBreedsFromUserInputRoutes)
 
 
 // User profile ENDPOINT
