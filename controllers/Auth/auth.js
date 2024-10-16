@@ -8,7 +8,6 @@ require("dotenv").config();
 const signUpController = async (req, res) => {
   try {
     const { username, email, password, role = "adopter" } = req.body;
-
     // Joi validation schema
     const userRegistrationSchema = Joi.object({
       username: Joi.string().trim().required().messages({
@@ -94,7 +93,7 @@ const loginController = async (req, res) => {
 
     return res.status(200).json({
       message: "Login successful",
-      token: `Bearer ${token}`,
+      token: token,
     });
     // eslint-disable-next-line no-undef
   } catch (err) {
