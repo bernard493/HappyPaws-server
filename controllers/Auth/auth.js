@@ -8,7 +8,6 @@ require("dotenv").config();
 const signUpController = async (req, res) => {
   try {
     const { username, email, password, role = "adopter" } = req.body;
-
     // Joi validation schema
     const userRegistrationSchema = Joi.object({
       username: Joi.string().trim().required().messages({

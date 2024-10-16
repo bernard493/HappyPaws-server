@@ -13,8 +13,8 @@ async function generateDogBreedsByOpenAi(searchValue, availableBreeds) {
       role: "user",
       content: `Please provide an array of 3 or minimum of 1 dog breed based on the user's preferences: "${searchValue}" and these available breeds: ${JSON.stringify(
         availableBreeds
-      )}. The output should be a strictly proper JSON array with breed names like this: ["Breed1", "Breed2", "Breed3"] and nothing else.`,
-    }
+      )}. The output should be a strictly proper JSON array with breed names like this: ["Breed1", "Breed2", "Breed3"] , no explanation and nothing else.`,
+    },
   ];
 
   try {
@@ -34,9 +34,18 @@ async function generateDogBreedsByOpenAi(searchValue, availableBreeds) {
       }
     );
 
-    // Parse OpenAI response and return the breed array
-    const suggestedBreeds = JSON.parse(response.data.choices[0].message.content.trim());
-    return suggestedBreeds; // This will be an array of breeds, e.g., ["Breed1", "Breed2"]
+    // Parse OpenAI response and handle non-JSON response gracefully
+    let suggestedBreeds;
+    try {
+      suggestedBreeds = JSON.parse(
+        response.data.choices[0].message.content.trim()
+      );
+    } catch (parseError) {
+      console.error("Error parsing OpenAI response:", parseError);
+      throw new Error("OpenAI did not return a valid JSON response");
+    }
+
+    return suggestedBreeds;
   } catch (error) {
     console.error(
       "Error generating Dog breed:",
