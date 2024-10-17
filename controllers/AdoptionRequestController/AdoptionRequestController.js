@@ -106,17 +106,18 @@ const createNewAdoptionRequest = async (req, res) => {
 const getAllAdoptionRequestByUserId = async (req, res) => {
   try {
     const adoptionRequests = await knex(constants.knex.adoption_requests)
-    .where("adoption_requests.user_id", req.user.id)
-    .join(constants.knex.pets, "adoption_requests.pet_id", "pets.id")
-    .join(constants.knex.shelters, "pets.shelter_id", "shelter.id") 
-    .select(
-      "pets.name", 
-      "shelter.name as shelterName", 
-      "adoption_requests.offerPrice",
-      "adoption_requests.price",
-      "adoption_requests.orderStatus",
-      "adoption_requests.orderNumber"
-    );
+      .where("adoption_requests.user_id", req.user.id)
+      .join(constants.knex.pets, "adoption_requests.pet_id", "pets.id")
+      .join(constants.knex.shelters, "pets.shelter_id", "shelter.id")
+      .select(
+        "adoption_requests.id as id",
+        "pets.name",
+        "shelter.name as shelterName",
+        "adoption_requests.offerPrice",
+        "adoption_requests.price",
+        "adoption_requests.orderStatus",
+        "adoption_requests.orderNumber"
+      );
     return res.json(adoptionRequests);
   } catch (error) {
     console.error("Error getting adoption requests:", error);
