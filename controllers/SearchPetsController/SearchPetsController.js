@@ -1,5 +1,5 @@
 const Joi = require("joi");
-const generateDogBreedsByOpenAi = require("../../Open_AI-Assis/open-ai_api_assistant");
+const generatePetBreedsByOpenAi = require("../../Open_AI-Assis/open-ai_api_assistant");
 const getAllBreedsAndCacheFromDB = require("../../Open_AI-Assis/getAllBreedsAndCacheFromDB");
 const constants = require("../../const/constants");
 const knex = require("knex")(require("../../knexfile"));
@@ -25,7 +25,7 @@ const getRecommendedPets = async (req, res) => {
       if (availableBreedsCache && availableBreedsCache.length > 0) {
         try {
           // Get breed recommendations from OpenAI based on searchValue and cached breeds
-          const suggestedBreeds = await generateDogBreedsByOpenAi(
+          const suggestedBreeds = await generatePetBreedsByOpenAi(
             searchValue,
             availableBreedsCache
           );

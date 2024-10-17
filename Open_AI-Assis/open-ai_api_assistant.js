@@ -2,7 +2,7 @@ const axios = require("axios");
 require("dotenv").config();
 
 // Function to generate dog breeds using OpenAI based on user search preferences
-async function generateDogBreedsByOpenAi(searchValue, availableBreeds) {
+async function generatePetBreedsByOpenAi(searchValue, availableBreeds) {
   const message = [
     {
       role: "system",
@@ -11,7 +11,7 @@ async function generateDogBreedsByOpenAi(searchValue, availableBreeds) {
     },
     {
       role: "user",
-      content: `Please provide an array of 3 or minimum of 1 dog breed based on the user's preferences: "${searchValue}" and these available breeds: ${JSON.stringify(
+      content: `Please provide an array of 3 or minimum of 1 breeds based on the user's preferences: "${searchValue}" and these available breeds: ${JSON.stringify(
         availableBreeds
       )}. The output should be a strictly proper JSON array with breed names like this: ["Breed1", "Breed2", "Breed3"] , no explanation and nothing else.`,
     },
@@ -55,4 +55,4 @@ async function generateDogBreedsByOpenAi(searchValue, availableBreeds) {
   }
 }
 
-module.exports = generateDogBreedsByOpenAi;
+module.exports = generatePetBreedsByOpenAi;
