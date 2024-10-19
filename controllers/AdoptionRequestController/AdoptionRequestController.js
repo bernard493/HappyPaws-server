@@ -80,6 +80,7 @@ const createNewAdoptionRequest = async (req, res) => {
       });
     }
 
+    const getOrderNumber = generateOrderNumber();
     // Create new adoption request
     const newAdoptionRequest = await knex(
       constants.knex.adoption_requests
@@ -89,13 +90,15 @@ const createNewAdoptionRequest = async (req, res) => {
       pet_id: petId,
       user_id: req.user.id,
       orderStatus: "Pending",
-      orderNumber: generateOrderNumber(),
+      orderNumber: getOrderNumber,
     });
 
     if (newAdoptionRequest) {
       return res
         .status(201)
-        .json({ message: "Adoption request created successfully" });
+        .json({
+          message: `Request created successfully with Order number ${getOrderNumber}`,
+        });
     }
   } catch (err) {
     console.error("Error creating adoption request:", err);

@@ -1,5 +1,5 @@
 const constants = require("../const/constants");
-const knex = require("knex")(require("../knexfile")); // Update with your knex setup
+const knex = require("knex")(require("../knexfile")); 
 require("dotenv").config();
 let breedCache = []; // In-memory cache to store breeds by species
 let cacheExpiry;
@@ -18,7 +18,6 @@ async function getAllBreedsAndCacheFromDB() {
     // If breeds are not cached, fetch from the database
     const breeds = await knex.select("breed").from(constants.knex.pets);
     const breedList = breeds.map((eachBreed) => eachBreed.breed);
-    // Cache the result for future use
     breedCache = breedList;
     cacheExpiry = currentTime + CACHE_TTL;
 
