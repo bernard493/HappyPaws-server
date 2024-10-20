@@ -1,18 +1,27 @@
 const knex = require("knex")(require("../../knexfile"));
 const Joi = require("joi");
 const constants = require("../../const/constants");
-
-// Get User profile
 const getUserProfile = async (req, res) => {
   try {
-    const user_Id = req.user.id;
+    const user_Id = req?.user?.id;
+
+    if (!user_Id) {
+      return res.status(400).json({ error: "User ID not provided" });
+    }
+
     const user = await knex(constants.knex.users)
       .select("email", "avatar", "role", "username")
       .where("id", user_Id)
       .first();
-    res.json(user);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    return res.status(200).json(user);
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching user profile:", error.message);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -88,7 +97,49 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
+const deleteUserProfile = async (req, res) => {
+  try {
+    const user_Id = req?.user?.id;
+
+    if (!user_Id) {
+      return res.status(400).json({ error: "User ID not provided" });
+    }
+
+    const user = await knex(constants.knex.users)
+      .select("email", "avatar", "role", "username")
+      .where("id", user_Id)
+      .first();
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    // Delete the user profile
+    const deleteUser = await knex(constants.knex.users)
+      .where("id", user_Id)
+      .del();
+
+    if (!deleteUser) {
+      return res.status(500).json({
+        message: "Delete failed: No user found.",
+      });
+    }
+
+    res.status(200).json({
+      message: "Profile was deleted successfully",
+    });
+
+    
+  } catch (error) {
+    // Catch any server-side errors
+    console.error("Error during Deleting  User:", error);
+    return res.status(500).json({
+      message: "Server error, can't Delete  user. Please try again later.",
+    });
+  }
+};
+
 module.exports = {
   getUserProfile,
   updateUserProfile,
+  deleteUserProfile,
 };
