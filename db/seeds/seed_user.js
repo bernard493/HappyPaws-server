@@ -19,7 +19,7 @@ exports.seed = async function (knex) {
     {
       id: "590b5195-89ad-11ef-aa19-e8d8d14985cf",
       username: faker.person.fullName(),
-      email: faker.internet.exampleEmail(),
+      email: "Kylie76@example.org",
       password: faker.internet.password(),
       role: "shelter",
       avatar: faker.image.avatar(),
@@ -27,7 +27,7 @@ exports.seed = async function (knex) {
     {
       id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
       username: faker.person.fullName(),
-      email: faker.internet.exampleEmail(),
+      email: "Erling.Sauer98@example.org",
       password: faker.internet.password(),
       role: "shelter",
       avatar: faker.image.avatar(),
@@ -35,7 +35,7 @@ exports.seed = async function (knex) {
     {
       id: "590b5762-89ad-11ef-aa19-e8d8d14985cf",
       username: faker.person.fullName(),
-      email: faker.internet.exampleEmail(),
+      email: "Ulises44@example.net",
       password: faker.internet.password(),
       role: "shelter",
       avatar: faker.image.avatar(),

@@ -14,7 +14,7 @@ exports.seed = async function (knex) {
       name: faker.company.name(), // Generates a random company name
       address: `${faker.location.street()},London Uk`,
       phone_number: faker.phone.number(), // Generates a random phone number
-      email: "Gianni_Adams66@example.org", // Generates a random email address
+      email: "Kylie76@example.org", // Generates a random email address
       avatar: faker.image.avatar(), // Generates a random avatar image URL
       status: faker.datatype.boolean(), // Generates a random boolean value
       created_at: knex.fn.now(), // Sets the current timestamp for creation
@@ -25,7 +25,7 @@ exports.seed = async function (knex) {
       name: faker.company.name(),
       address: `${faker.location.street()},London Uk`,
       phone_number: faker.phone.number(),
-      email: "Ara_Lueilwitz@example.org",
+      email: "Erling.Sauer98@example.org",
       avatar: faker.image.avatar(),
       status: faker.datatype.boolean(),
       created_at: knex.fn.now(),
@@ -36,7 +36,7 @@ exports.seed = async function (knex) {
       name: faker.company.name(),
       address: `${faker.location.street()},London Uk`,
       phone_number: faker.phone.number(),
-      email: "Shaun_Stamm-West@example.com",
+      email: "Ulises44@example.net",
       avatar: faker.image.avatar(),
       status: faker.datatype.boolean(),
       created_at: knex.fn.now(),
