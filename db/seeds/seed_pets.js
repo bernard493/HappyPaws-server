@@ -30,7 +30,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(), // Random vaccine status (true or false)
       description: faker.lorem.sentence(), // Random sentence for the description
       available: true, // Default to available
-      shelter_id: "590b5195-89ad-11ef-aa19-e8d8d14985cf", // Assuming this matches an existing shelter UUID in your "shelter" table
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf", // Assuming this matches an existing shelter UUID in your "shelter" table
     },
     {
       id: knex.raw("UUID()"),
@@ -51,7 +51,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: false,
-      shelter_id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -72,7 +72,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b5195-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -93,7 +93,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -113,7 +113,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -134,7 +134,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b5195-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -156,7 +156,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -177,7 +177,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b5195-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -198,7 +198,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -219,7 +219,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -240,7 +240,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -261,7 +261,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -282,7 +282,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -302,7 +302,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -323,7 +323,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b54d8-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -344,7 +344,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b5195-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -365,7 +365,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b5195-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
     {
       id: knex.raw("UUID()"),
@@ -386,7 +386,7 @@ exports.seed = async function (knex) {
       vaccineStatus: faker.datatype.boolean(),
       description: faker.lorem.sentence(),
       available: true,
-      shelter_id: "590b5195-89ad-11ef-aa19-e8d8d14985cf",
+      shelter_id: "590b5195-89ad-11ef-aa19-ed8d14985cf",
     },
   ]);
 };
