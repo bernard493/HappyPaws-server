@@ -2,6 +2,7 @@ const router = require("express").Router();
 const passport = require("../../middleware/passport");
 const {
   createNewAdoptionRequest,
+  getAllAdoptionRequestByUserId
 } = require("../../controllers/AdoptionRequestController/AdoptionRequestController");
 // Adoption Request Routes:
 
@@ -16,9 +17,7 @@ router.post(
 router.get(
   "/requests",
   passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.send("Get a list of the logged-in adopter's adoption requests.");
-  }
+  getAllAdoptionRequestByUserId
 );
 
 //  Get details of a specific adoption request (if the request belongs to the adopter).
