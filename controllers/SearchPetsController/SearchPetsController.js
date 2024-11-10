@@ -7,14 +7,18 @@ const knex = require("knex")(require("../../knexfile"));
 // Get pets based on input
 const getRecommendedPets = async (req, res) => {
   try {
-    const { searchValue } = req.body;
+    const { userSearchInput, userImageUrl } = req.body.searchValue;
     // Validate body
     const userRecommendationSchema = Joi.object({
-      searchValue: Joi.string().required(),
+      userSearchInput: Joi.string(),
+      userImageUrl: Joi.string(),
     });
-    const { error } = userRecommendationSchema.validate(req.body, {
-      abortEarly: false,
-    });
+    const { error } = userRecommendationSchema.validate(
+      { userSearchInput, userImageUrl },
+      {
+        abortEarly: false,
+      }
+    );
 
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
@@ -26,7 +30,7 @@ const getRecommendedPets = async (req, res) => {
         try {
           // Get breed recommendations from OpenAI based on searchValue and cached breeds
           const suggestedBreeds = await generateDogBreedsByOpenAi(
-            searchValue,
+            { userSearchInput, userImageUrl },
             availableBreedsCache
           );
 
