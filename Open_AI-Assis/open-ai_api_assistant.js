@@ -2,18 +2,22 @@ const axios = require("axios");
 require("dotenv").config();
 
 // Function to generate dog breeds using OpenAI based on user search preferences
-async function generatePetBreedsByOpenAi(searchValue, availableBreeds) {
+async function generateDogBreedsByOpenAi(searchValue, availableBreeds) {
+
+  const promptContent = `Please provide an array of 3 or a minimum of 1 dog breed based on the user's preferences${searchValue}  and available breeds in the database
+  . Available breeds are: ${JSON.stringify(
+    availableBreeds
+  )}. The output should be a strictly proper JSON array with breed names like this: ["Breed1", "Breed2", "Breed3"] and nothing else.`;
+
   const message = [
     {
       role: "system",
       content:
-        "You are an assistant that helps recommend pets for adoption based on the user search preferences and available breeds in the database.",
+        "You are an assistant that helps recommend ets for adoption based on the user search preferences and available breeds in the database.",
     },
     {
       role: "user",
-      content: `Please provide an array of 3 or minimum of 1 breeds based on the user's preferences: "${searchValue}" and these available breeds: ${JSON.stringify(
-        availableBreeds
-      )}. The output should be a strictly proper JSON array with breed names like this: ["Breed1", "Breed2", "Breed3"] , no explanation and nothing else.`,
+      content: promptContent,
     },
   ];
 
@@ -34,18 +38,11 @@ async function generatePetBreedsByOpenAi(searchValue, availableBreeds) {
       }
     );
 
-    // Parse OpenAI response and handle non-JSON response gracefully
-    let suggestedBreeds;
-    try {
-      suggestedBreeds = JSON.parse(
-        response.data.choices[0].message.content.trim()
-      );
-    } catch (parseError) {
-      console.error("Error parsing OpenAI response:", parseError);
-      throw new Error("OpenAI did not return a valid JSON response");
-    }
-
-    return suggestedBreeds;
+    // Parse OpenAI response and return the breed array
+    const suggestedBreeds = JSON.parse(
+      response.data.choices[0].message.content.trim()
+    );
+    return suggestedBreeds; // This will be an array of breeds, e.g., ["Breed1", "Breed2"]
   } catch (error) {
     console.error(
       "Error generating Dog breed:",
@@ -55,4 +52,4 @@ async function generatePetBreedsByOpenAi(searchValue, availableBreeds) {
   }
 }
 
-module.exports = generatePetBreedsByOpenAi;
+module.exports = generateDogBreedsByOpenAi;
