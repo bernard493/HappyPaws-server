@@ -13,7 +13,7 @@ async function generateDogBreedsByOpenAi(searchValue, availableBreeds) {
     {
       role: "system",
       content:
-        "You are an assistant that helps recommend pets for adoption based on the user search preferences and available breeds in the database.",
+        "You are an assistant that helps recommend ets for adoption based on the user search preferences and available breeds in the database.",
     },
     {
       role: "user",

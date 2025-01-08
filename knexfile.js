@@ -15,6 +15,7 @@ module.exports = {
     // eslint-disable-next-line no-undef
     database: process.env.DB_CONNECTION_DATABASE_NAME,
     charset: "utf8",
+    port: 21386, 
   },
   migrations: {
     directory: "./db/migrations",

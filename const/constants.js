@@ -1,7 +1,7 @@
 const constants = {
   knex: {
     pets: "pets",
-    shelters: "shelters",
+    shelters: "shelter",
     adopters: "adopters",
     adoption_requests: "adoption_requests",
     admins: "admins",

@@ -1,5 +1,5 @@
 const Joi = require("joi");
-const generateDogBreedsByOpenAi = require("../../Open_AI-Assis/open-ai_api_assistant");
+const generatePetBreedsByOpenAi = require("../../Open_AI-Assis/open-ai_api_assistant");
 const getAllBreedsAndCacheFromDB = require("../../Open_AI-Assis/getAllBreedsAndCacheFromDB");
 const constants = require("../../const/constants");
 const knex = require("knex")(require("../../knexfile"));
