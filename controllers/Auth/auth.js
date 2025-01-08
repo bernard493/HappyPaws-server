@@ -61,7 +61,8 @@ const signUpController = async (req, res) => {
       email,
       password: hashedPassword,
       role,
-      avatar: "https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png?ssl=1",
+      avatar:
+        "https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png?ssl=1",
     });
 
     if (user) {
@@ -96,9 +97,10 @@ const loginController = async (req, res) => {
       message: "Login successful",
       token: `Bearer ${token}`,
     });
-    // eslint-disable-next-line no-undef
   } catch (err) {
-    return res.status(500).json({ message: "Internal server error" });
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: err });
   }
 };
 

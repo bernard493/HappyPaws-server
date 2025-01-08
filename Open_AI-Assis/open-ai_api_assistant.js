@@ -3,13 +3,10 @@ require("dotenv").config();
 
 // Function to generate dog breeds using OpenAI based on user search preferences
 async function generateDogBreedsByOpenAi(searchValue, availableBreeds) {
-  console.log('searchValue',searchValue);
-  const { userSearchInput, userImageUrl } = searchValue;
-  const promptContent = `Please provide an array of 3 or a minimum of 1 dog breed based on the user's preferences${
-    userSearchInput ? `: "${userSearchInput}"` : ""
-  }${
-    userImageUrl ? ` with this image: ${userImageUrl}` : ""
-  }. Available breeds are: ${JSON.stringify(
+  console.log("searchValue", searchValue);
+  const { userSearchInput } = searchValue;
+  const promptContent = `Please provide an array of 3 or a minimum of 1 dog breed based on the user's preferences${userSearchInput}  and available breeds in the database
+  . Available breeds are: ${JSON.stringify(
     availableBreeds
   )}. The output should be a strictly proper JSON array with breed names like this: ["Breed1", "Breed2", "Breed3"] and nothing else.`;
 
